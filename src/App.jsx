@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Hero from "./sections/Hero";
 import Navbar from "./components/Navbar";
+import Reviews from "./sections/Reviews";
+import TheMark from "./sections/TheMark";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -50,6 +52,8 @@ function App() {
       >
         <Navbar />
         <Hero />
+        <TheMark />
+        <Reviews />
       </div>
 
       <style>{`

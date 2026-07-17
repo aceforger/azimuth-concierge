@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const serviceData = [
   {
@@ -97,16 +97,26 @@ const Navbar = () => {
   const [activeWing, setActiveWing] = useState(0);
   const [closing, setClosing] = useState(false);
 
+  // Lock body scroll when dropdown is open
+  useEffect(() => {
+    if (openMenu !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [openMenu]);
+
   const toggleMenu = (menu) => {
     if (openMenu === menu) {
-      // Closing — animate out then clear
       setClosing(true);
       setTimeout(() => {
         setOpenMenu(null);
         setClosing(false);
       }, 350);
     } else {
-      // Switching menus or opening fresh — instant swap, no transparent gap
       setClosing(false);
       setOpenMenu(menu);
     }
@@ -124,18 +134,23 @@ const Navbar = () => {
             : "bg-transparent"
         }`}
       >
-        {/* Brand mark - only visible when menu closed */}
-        {/* <div
+        {/* Brand mark */}
+        <button
+          onClick={() => {
+            setOpenMenu(null);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           className={`transition-all duration-500 ${
             isOpen ? "opacity-0 w-0 overflow-hidden" : "opacity-100 mr-0"
           }`}
         >
-          <span className="text-white/50 tracking-[0.4em] text-[10px] font-light uppercase">
+          <span className="text-white/99 tracking-[0.4em] text-[10px] font-light uppercase hover:text-[#c9a95a] transition-colors duration-300">
             Azimuth
           </span>
-        </div> */}
+        </button>
 
         <div className="flex gap-8">
+          {/* Service Wing */}
           <button
             onClick={() => toggleMenu("services")}
             className="group relative py-2"
@@ -144,12 +159,11 @@ const Navbar = () => {
               className={`tracking-[0.25em] text-xs md:text-sm uppercase font-light transition-all duration-300 ${
                 openMenu === "services"
                   ? "text-[#c9a95a]"
-                  : "text-white/60 group-hover:text-white"
+                  : "text-white/99 group-hover:text-white"
               }`}
             >
               Service Wing
             </span>
-            {/* Underline indicator */}
             <span
               className={`absolute bottom-0 left-0 h-px bg-[#c9a95a] transition-all duration-500 ${
                 openMenu === "services" ? "w-full" : "w-0 group-hover:w-full"
@@ -157,6 +171,7 @@ const Navbar = () => {
             />
           </button>
 
+          {/* Manifesto */}
           <button
             onClick={() => toggleMenu("manifesto")}
             className="group relative py-2"
@@ -165,7 +180,7 @@ const Navbar = () => {
               className={`tracking-[0.25em] text-xs md:text-sm uppercase font-light transition-all duration-300 ${
                 openMenu === "manifesto"
                   ? "text-[#c9a95a]"
-                  : "text-white/60 group-hover:text-white"
+                  : "text-white/99 group-hover:text-white"
               }`}
             >
               Manifesto
@@ -176,10 +191,42 @@ const Navbar = () => {
               }`}
             />
           </button>
+
+          {/* The Mark */}
+          <button
+            onClick={() => {
+              setOpenMenu(null);
+              document
+                .getElementById("the-mark")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="group relative py-2"
+          >
+            <span className="tracking-[0.25em] text-xs md:text-sm uppercase font-light text-white/60 group-hover:text-white transition-all duration-300">
+              The Mark
+            </span>
+            <span className="absolute bottom-0 left-0 h-px bg-[#c9a95a] transition-all duration-500 w-0 group-hover:w-full" />
+          </button>
+
+          {/* The Ledger */}
+          <button
+            onClick={() => {
+              setOpenMenu(null);
+              document
+                .getElementById("reviews")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="group relative py-2"
+          >
+            <span className="tracking-[0.25em] text-xs md:text-sm uppercase font-light text-white/99 group-hover:text-white transition-all duration-300">
+              The Ledger
+            </span>
+            <span className="absolute bottom-0 left-0 h-px bg-[#c9a95a] transition-all duration-500 w-0 group-hover:w-full" />
+          </button>
         </div>
       </div>
 
-      {/* Dropdown backdrop blur layer */}
+      {/* Dropdown backdrop */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/40 backdrop-blur-sm -z-10"
@@ -195,7 +242,7 @@ const Navbar = () => {
             : "opacity-0 scale-y-95 pointer-events-none absolute"
         }`}
       >
-        <div className="bg-black/95 backdrop-blur-xl border-b border-white/[0.06] px-12 md:px-24 py-12">
+        <div className="bg-black/95 backdrop-blur-xl border-b border-white/[0.06] px-12 md:px-24 py-12 max-h-[80vh] overflow-y-auto">
           <div className="max-w-full">
             {/* Wing selector tabs */}
             <div className="flex flex-wrap gap-10 mb-10">
@@ -227,7 +274,7 @@ const Navbar = () => {
             <div className="w-full h-px bg-gradient-to-r from-white/[0.08] via-white/[0.04] to-transparent mb-10" />
 
             {/* Active wing content */}
-            <div className="animate-[fadeUp_0.5s_ease-out]">
+            <div className="animate-[fadeUp_0.5s_ease-out]" key={activeWing}>
               <p className="text-white/30 text-xs tracking-[0.2em] uppercase mb-6">
                 {serviceData[activeWing].subtitle}
               </p>
@@ -259,7 +306,7 @@ const Navbar = () => {
             : "opacity-0 scale-y-95 pointer-events-none absolute"
         }`}
       >
-        <div className="bg-black/95 backdrop-blur-xl border-b border-white/[0.06] max-h-[85vh] overflow-y-auto">
+        <div className="bg-black/95 backdrop-blur-xl border-b border-white/[0.06] max-h-[80vh] overflow-y-auto">
           <div className="px-12 md:px-24 py-20 md:py-28">
             <div className="max-w-3xl mx-auto">
               {/* Label with decorative line */}
@@ -343,7 +390,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Custom scrollbar */}
+      {/* Animations & Scrollbar */}
       <style>{`
         @keyframes fadeUp {
           from {
