@@ -270,7 +270,7 @@ const TheMark = () => {
                   }`}
                 >
                   {/* Number */}
-                  <p className="text-[#c9a95a]/15 text-6xl md:text-7xl font-serif absolute -top-8 -left-2 select-none">
+                  <p className="text-[#c9a95a]/15 text-6xl md:text-7xl font-serif-premium absolute -top-8 -left-2 select-none">
                     {(index + 1).toString().padStart(2, "0")}
                   </p>
 

@@ -112,7 +112,7 @@ const Reviews = () => {
       {/* Ambient light streak */}
       <div className="absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c9a95a]/5 to-transparent pointer-events-none hidden lg:block" />
 
-      <div className="max-w-4xl mx-auto w-full relative z-10">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Section label */}
         <div
           className={`flex items-center gap-4 mb-20 transition-all duration-[1500ms] ease-out ${
@@ -121,7 +121,7 @@ const Reviews = () => {
         >
           <span className="h-px w-12 bg-[#c9a95a]/50" />
           <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light">
-            The Ledger
+            The Stories
           </p>
           <span className="h-px w-12 bg-[#c9a95a]/50" />
         </div>
@@ -134,7 +134,7 @@ const Reviews = () => {
         >
           {/* Giant watermark quote mark */}
           <span
-            className="absolute -top-16 -left-8 md:-left-12 text-[#c9a95a]/5 text-[12rem] md:text-[16rem] font-serif leading-none select-none pointer-events-none transition-all duration-[2000ms]"
+            className="absolute -top-16 -left-8 md:-left-12 text-[#c9a95a]/5 text-[12rem] md:text-[16rem] font-serif-premium leading-none select-none pointer-events-none transition-all duration-[2000ms]"
             style={{
               opacity: isVisible ? 0.05 : 0,
               transform: isVisible ? "scale(1)" : "scale(0.8)",

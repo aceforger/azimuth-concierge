@@ -47,10 +47,10 @@ const Hero = () => {
               The Concierge Standard.
             </h2>
             <p className="text-white/60 text-sm md:text-base leading-relaxed font-light max-w-lg">
-              We do not use scripts, and we do not compromise on detail. Azimuth
-              pairs elite founders and luxury brands with dedicated operational
-              partners who understand that premium service is an art, not a
-              checklist.
+              Every engagement begins with precision and ends with discretion.
+              Azimuth pairs elite founders and luxury brands with dedicated
+              operational partners who treat premium service as an art form —
+              intentional, instinctive, and exact.
             </p>
           </div>
         </div>

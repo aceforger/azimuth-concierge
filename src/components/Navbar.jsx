@@ -140,9 +140,7 @@ const Navbar = () => {
             setOpenMenu(null);
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className={`transition-all duration-500 ${
-            isOpen ? "opacity-0 w-0 overflow-hidden" : "opacity-100 mr-0"
-          }`}
+          className="transition-all duration-500 opacity-100 mr-0"
         >
           <span className="text-white/99 tracking-[0.4em] text-[10px] font-light uppercase hover:text-[#c9a95a] transition-colors duration-300">
             Azimuth
@@ -208,7 +206,7 @@ const Navbar = () => {
             <span className="absolute bottom-0 left-0 h-px bg-[#c9a95a] transition-all duration-500 w-0 group-hover:w-full" />
           </button>
 
-          {/* The Ledger */}
+          {/* The Stories */}
           <button
             onClick={() => {
               setOpenMenu(null);
@@ -219,7 +217,7 @@ const Navbar = () => {
             className="group relative py-2"
           >
             <span className="tracking-[0.25em] text-xs md:text-sm uppercase font-light text-white/99 group-hover:text-white transition-all duration-300">
-              The Ledger
+              The Stories
             </span>
             <span className="absolute bottom-0 left-0 h-px bg-[#c9a95a] transition-all duration-500 w-0 group-hover:w-full" />
           </button>
@@ -335,7 +333,7 @@ const Navbar = () => {
               {/* Body */}
               <div className="space-y-8 text-white/55 text-sm md:text-base font-light leading-relaxed">
                 <p>
-                  <span className="float-left text-[#c9a95a] text-6xl md:text-8xl font-serif leading-[0.7] mr-4 mt-2">
+                  <span className="float-left text-[#c9a95a] text-6xl md:text-8xl font-serif-premium leading-[0.7] mr-4 mt-2">
                     I
                   </span>
                   n an era obsessed with infinite growth, automated templates,
