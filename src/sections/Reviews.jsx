@@ -119,11 +119,11 @@ const Reviews = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="h-px w-12 bg-[#c9a95a]/50" />
-          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light">
+          <span className="h-px w-12 bg-[#c9a95a]/50 mt-5" />
+          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] mt-5 uppercase font-light">
             The Stories
           </p>
-          <span className="h-px w-12 bg-[#c9a95a]/50" />
+          <span className="h-px w-12 bg-[#c9a95a]/50 mt-5" />
         </div>
 
         {/* Quote area */}
@@ -156,7 +156,7 @@ const Reviews = () => {
               >
                 {/* Quote text with staggered reveal feel */}
                 <blockquote className="relative">
-                  <p className="text-white/80 text-xl md:text-3xl lg:text-4xl font-light leading-relaxed italic max-w-2xl">
+                  <p className="text-white/80 text-xs md:text-2xl lg:text-3xl font-light leading-relaxed italic max-w-2xl">
                     {review.quote}
                   </p>
                 </blockquote>

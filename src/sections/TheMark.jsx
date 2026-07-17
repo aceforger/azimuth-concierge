@@ -105,11 +105,11 @@ const TheMark = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="h-px w-12 bg-[#c9a95a]/50" />
-          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light">
+          <span className="h-px w-12 bg-[#c9a95a]/50 mt-5" />
+          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] mt-5 uppercase font-light">
             The Mark
           </p>
-          <span className="h-px w-12 bg-[#c9a95a]/50" />
+          <span className="h-px w-12 bg-[#c9a95a]/50 mt-5" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">

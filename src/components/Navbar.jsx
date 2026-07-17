@@ -140,11 +140,15 @@ const Navbar = () => {
             setOpenMenu(null);
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="transition-all duration-500 opacity-100 mr-0"
+          className="relative transition-all duration-500 opacity-100 mr-0"
         >
-          <span className="text-white/99 tracking-[0.4em] text-[10px] font-light uppercase hover:text-[#c9a95a] transition-colors duration-300">
-            Azimuth
-          </span>
+          <img
+            src="/images/logo2.png"
+            alt="Azimuth Concierge Group"
+            className="absolute top-1/2 -translate-y-1/2 left-0 h-20 md:h-24 w-auto object-contain hover:opacity-80 transition-opacity duration-300"
+          />
+          {/* Invisible spacer so the nav items still align properly */}
+          <span className="opacity-0 pointer-events-none h-20 md:h-24 w-20 md:w-24 block" />
         </button>
 
         <div className="flex gap-8">
