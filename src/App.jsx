@@ -5,6 +5,10 @@ import Navbar from "./components/Navbar";
 import TheMark from "./sections/TheMark";
 import Reviews from "./sections/Reviews";
 import Careers from "./pages/Careers";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Copyright from "./pages/Copyright";
+
 import Footer from "./components/Footer";
 
 // Scroll to top on route change
@@ -80,6 +84,9 @@ function App() {
               }
             />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/copyright" element={<Copyright />} />
           </Routes>
           <Footer />
         </div>

@@ -202,15 +202,6 @@ const Navbar = () => {
       action: () => scrollToSection("reviews"),
       key: "reviews",
     },
-    {
-      label: "Careers",
-      action: () => {
-        setOpenMenu(null);
-        setMobileMenuOpen(false);
-        navigate("/careers");
-      },
-      key: "careers",
-    },
   ];
 
   return (
