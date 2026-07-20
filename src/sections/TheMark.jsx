@@ -145,17 +145,20 @@ const TheMark = () => {
               />
 
               {/* Logo container */}
-              <div className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-96 lg:h-96 flex items-center justify-center">
+              <div className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-[28rem] lg:h-[28rem] flex items-center justify-center ml-0 ">
                 {!imageLoaded && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-12 lg:w-16 h-[1px] bg-[#c9a95a]/20 animate-pulse" />
                   </div>
                 )}
-
                 {/* Rotating outer ring */}
                 <div
-                  className="absolute inset-0 rounded-full border border-[#c9a95a]/15 transition-all duration-[2500ms]"
+                  className="absolute rounded-full border border-[#c9a95a]/15 transition-all duration-[2500ms]"
                   style={{
+                    top: "0px",
+                    left: "0px",
+                    right: "0px",
+                    bottom: "0px",
                     opacity: isVisible ? 1 : 0,
                     animation: isVisible
                       ? "spinSlow 20s linear infinite"
@@ -165,15 +168,18 @@ const TheMark = () => {
 
                 {/* Counter-rotating middle ring */}
                 <div
-                  className="absolute inset-3 lg:inset-4 rounded-full border border-[#c9a95a]/10 transition-all duration-[2500ms]"
+                  className="absolute rounded-full border border-[#c9a95a]/10 transition-all duration-[2500ms]"
                   style={{
+                    top: "12px",
+                    left: "12px",
+                    right: "12px",
+                    bottom: "12px",
                     opacity: isVisible ? 1 : 0,
                     animation: isVisible
                       ? "spinReverse 25s linear infinite"
                       : "none",
                   }}
                 />
-
                 <img
                   src="/images/logo.png"
                   alt="Azimuth Concierge Group Logo"
