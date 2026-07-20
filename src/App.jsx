@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import TheMark from "./sections/TheMark";
 import Reviews from "./sections/Reviews";
 import Careers from "./pages/Careers";
+import Footer from "./components/Footer";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -80,6 +81,7 @@ function App() {
             />
             <Route path="/careers" element={<Careers />} />
           </Routes>
+          <Footer />
         </div>
 
         <style>{`

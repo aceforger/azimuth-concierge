@@ -103,6 +103,16 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Auto-scroll active tab into view on mobile
   useEffect(() => {
     if (openMenu === "services" && tabsRef.current) {
@@ -208,8 +218,8 @@ const Navbar = () => {
       {/* Nav bar */}
       <div
         className={`flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 md:py-6 lg:py-8 transition-all duration-500 ${
-          openMenu !== null || mobileMenuOpen
-            ? "bg-black/95 backdrop-blur-xl border-b border-white/[0.06]"
+          openMenu !== null || mobileMenuOpen || scrolled
+            ? "bg-black/80 backdrop-blur-xl border-b border-white/[0.06]"
             : "bg-transparent"
         }`}
       >
