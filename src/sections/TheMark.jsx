@@ -46,7 +46,7 @@ const TheMark = () => {
       intervalRef.current = setInterval(() => {
         setActiveSymbol((prev) => (prev + 1) % symbols.length);
         setSpinTrigger((prev) => prev + 1);
-      }, 5000);
+      }, 10000);
     }
   };
 
@@ -83,7 +83,7 @@ const TheMark = () => {
     <section
       ref={sectionRef}
       id="the-mark"
-      className="bg-black min-h-screen flex items-center px-12 md:px-24 py-24 md:py-32 relative overflow-hidden"
+      className="bg-black min-h-screen flex items-center px-6 sm:px-10 md:px-16 lg:px-12 xl:px-24 py-20 md:py-28 lg:py-24 xl:py-32 relative overflow-hidden"
     >
       {/* Background ambient texture */}
       <div
@@ -101,28 +101,118 @@ const TheMark = () => {
       <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Section label */}
         <div
-          className={`flex items-center gap-4 mb-24 transition-all duration-[1500ms] ease-out ${
+          className={`flex items-center gap-4 mb-16 md:mb-20 lg:mb-24 transition-all duration-[1500ms] ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="h-px w-12 bg-[#c9a95a]/50" />
-          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light">
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50" />
+          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light mt-5">
             The Mark
           </p>
-          <span className="h-px w-12 bg-[#c9a95a]/50" />
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
-          {/* Left - Symbolism */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 xl:gap-32 items-center">
+          {/* Mobile: Logo on top | Desktop: Logo on right */}
           <div
-            className={`flex flex-col justify-center order-1 lg:order-1 transition-all duration-[1500ms] ease-out delay-500 ${
+            className={`flex items-center justify-center order-1 lg:order-2 transition-all duration-[2000ms] ease-out delay-300 ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-12"
+            } lg:items-start lg:justify-start lg:-mt-30`}
+          >
+            <div className="relative group">
+              {/* Outer ambient pulse */}
+              <div
+                className="absolute -inset-8 sm:-inset-12 lg:-inset-16 rounded-full transition-all duration-[3000ms]"
+                style={{
+                  background: isVisible
+                    ? "radial-gradient(circle, rgba(201,169,90,0.06) 0%, rgba(201,169,90,0.02) 40%, transparent 70%)"
+                    : "none",
+                  animation: isVisible
+                    ? "pulse 4s ease-in-out infinite"
+                    : "none",
+                }}
+              />
+
+              {/* Secondary ring */}
+              <div
+                className="absolute -inset-4 sm:-inset-6 lg:-inset-8 rounded-full border border-[#c9a95a]/10 transition-all duration-[2500ms]"
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "scale(1)" : "scale(0.9)",
+                }}
+              />
+
+              {/* Logo container */}
+              <div className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-96 lg:h-96 flex items-center justify-center">
+                {!imageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-12 lg:w-16 h-[1px] bg-[#c9a95a]/20 animate-pulse" />
+                  </div>
+                )}
+
+                {/* Rotating outer ring */}
+                <div
+                  className="absolute inset-0 rounded-full border border-[#c9a95a]/15 transition-all duration-[2500ms]"
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    animation: isVisible
+                      ? "spinSlow 20s linear infinite"
+                      : "none",
+                  }}
+                />
+
+                {/* Counter-rotating middle ring */}
+                <div
+                  className="absolute inset-3 lg:inset-4 rounded-full border border-[#c9a95a]/10 transition-all duration-[2500ms]"
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    animation: isVisible
+                      ? "spinReverse 25s linear infinite"
+                      : "none",
+                  }}
+                />
+
+                <img
+                  src="/images/logo.png"
+                  alt="Azimuth Concierge Group Logo"
+                  onLoad={() => setImageLoaded(true)}
+                  className="relative z-10 w-full h-full object-contain"
+                  style={{
+                    filter: imageLoaded
+                      ? "drop-shadow(0 0 40px rgba(201, 169, 90, 0.15))"
+                      : "none",
+                    opacity: imageLoaded ? 1 : 0,
+                    animation: imageLoaded
+                      ? "logoCycle 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards"
+                      : "none",
+                  }}
+                  key={spinTrigger}
+                />
+              </div>
+
+              {/* Bottom accent line */}
+              <div
+                className="absolute -bottom-6 lg:-bottom-8 left-1/2 -translate-x-1/2 w-16 lg:w-24 h-px bg-gradient-to-r from-transparent via-[#c9a95a]/30 to-transparent transition-all duration-[2000ms] delay-500"
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  width: isVisible ? "64px" : "0px",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Desktop: Text on left | Mobile: Text below logo */}
+          <div
+            className={`flex flex-col justify-center order-2 lg:order-1 transition-all duration-[1500ms] ease-out delay-500 ${
               isVisible
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 -translate-x-12"
             }`}
           >
-            {/* Symbol selector - enhanced dots */}
-            <div className="flex gap-5 mb-14">
+            {/* Symbol selector dots */}
+            <div className="flex gap-5 mb-10 lg:mb-14">
               {symbols.map((_, index) => (
                 <button
                   key={index}
@@ -131,7 +221,6 @@ const TheMark = () => {
                   onMouseLeave={() => setHoveredDot(null)}
                   className="relative group/dot py-3"
                 >
-                  {/* Outer ring for active */}
                   <div
                     className={`absolute -inset-2 rounded-full border border-[#c9a95a]/20 transition-all duration-500 ${
                       index === activeSymbol
@@ -139,8 +228,6 @@ const TheMark = () => {
                         : "opacity-0 scale-50 group-hover/dot:opacity-50 group-hover/dot:scale-100"
                     }`}
                   />
-
-                  {/* The dot itself */}
                   <span
                     className={`block transition-all duration-500 rounded-full ${
                       index === activeSymbol
@@ -148,8 +235,6 @@ const TheMark = () => {
                         : "w-[2px] h-[2px] bg-white/20 group-hover/dot:bg-white/50 group-hover/dot:shadow-[0_0_4px_rgba(255,255,255,0.2)]"
                     }`}
                   />
-
-                  {/* Label on hover */}
                   <span
                     className={`absolute -top-8 left-1/2 -translate-x-1/2 text-[#c9a95a]/60 text-[9px] tracking-[0.3em] uppercase font-light whitespace-nowrap transition-all duration-300 ${
                       hoveredDot === index && index !== activeSymbol
@@ -164,17 +249,16 @@ const TheMark = () => {
             </div>
 
             {/* Active symbol content */}
-            <div className="relative" style={{ minHeight: "340px" }}>
+            <div className="relative" style={{ minHeight: "280px" }}>
               {symbols.map((symbol, index) => (
                 <div
                   key={index}
-                  className={`transition-all duration-[1000ms] ease-out ${
+                  className={`transition-all duration-[1200ms] ease-out ${
                     index === activeSymbol
                       ? "opacity-100 translate-y-0 relative"
                       : "opacity-0 translate-y-8 pointer-events-none absolute inset-0"
                   }`}
                 >
-                  {/* Number */}
                   <p className="text-[#c9a95a]/15 text-6xl md:text-7xl font-serif-premium absolute -top-8 -left-2 select-none">
                     {(index + 1).toString().padStart(2, "0")}
                   </p>
@@ -214,7 +298,6 @@ const TheMark = () => {
                 {symbols.length.toString().padStart(2, "0")}
               </p>
 
-              {/* Navigation arrows */}
               <div className="flex gap-4">
                 <button
                   onClick={() =>
@@ -236,98 +319,6 @@ const TheMark = () => {
                   Next
                 </button>
               </div>
-            </div>
-          </div>
-
-          {/* Right - Logo Display */}
-          <div
-            className={`flex items-start justify-center lg:justify-start order-2 lg:order-2 transition-all duration-[2000ms] ease-out delay-300 -mt-30 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-12"
-            }`}
-          >
-            <div className="relative group">
-              {/* Outer ambient pulse */}
-              <div
-                className="absolute -inset-16 rounded-full transition-all duration-[3000ms]"
-                style={{
-                  background: isVisible
-                    ? "radial-gradient(circle, rgba(201,169,90,0.06) 0%, rgba(201,169,90,0.02) 40%, transparent 70%)"
-                    : "none",
-                  animation: isVisible
-                    ? "pulse 4s ease-in-out infinite"
-                    : "none",
-                }}
-              />
-
-              {/* Secondary ring */}
-              <div
-                className="absolute -inset-8 rounded-full border border-[#c9a95a]/10 transition-all duration-[2500ms]"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "scale(1)" : "scale(0.9)",
-                }}
-              />
-
-              {/* Logo container */}
-              <div className="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center">
-                {/* Loading shimmer */}
-                {!imageLoaded && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-[1px] bg-[#c9a95a]/20 animate-pulse" />
-                  </div>
-                )}
-
-                {/* Rotating outer ring */}
-                <div
-                  className="absolute inset-0 rounded-full border border-[#c9a95a]/15 transition-all duration-[2500ms]"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    animation: isVisible
-                      ? "spinSlow 20s linear infinite"
-                      : "none",
-                  }}
-                />
-
-                {/* Counter-rotating middle ring */}
-                <div
-                  className="absolute inset-4 rounded-full border border-[#c9a95a]/10 transition-all duration-[2500ms]"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    animation: isVisible
-                      ? "spinReverse 25s linear infinite"
-                      : "none",
-                  }}
-                />
-
-                {/* Logo image - spins on text change */}
-                <img
-                  src="/images/logo.png"
-                  alt="Azimuth Concierge Group Logo"
-                  onLoad={() => setImageLoaded(true)}
-                  className="relative z-10 w-full h-full object-contain"
-                  style={{
-                    filter: imageLoaded
-                      ? "drop-shadow(0 0 40px rgba(201, 169, 90, 0.15))"
-                      : "none",
-                    opacity: imageLoaded ? 1 : 0,
-                    animation: imageLoaded
-                      ? "logoCycle 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards"
-                      : "none",
-                  }}
-                  key={spinTrigger}
-                />
-              </div>
-
-              {/* Bottom accent line */}
-              <div
-                className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-[#c9a95a]/30 to-transparent transition-all duration-[2000ms] delay-500"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  width: isVisible ? "96px" : "0px",
-                }}
-              />
             </div>
           </div>
         </div>
@@ -358,11 +349,11 @@ const TheMark = () => {
             transform: perspective(600px) rotateY(360deg) scale(1);
             filter: drop-shadow(0 0 50px rgba(201, 169, 90, 0.25));
           }
-          50% {
+          55% {
             transform: perspective(600px) rotateY(360deg) scale(1.04);
             filter: drop-shadow(0 0 60px rgba(201, 169, 90, 0.35));
           }
-          65% {
+          70% {
             transform: perspective(600px) rotateY(360deg) scale(1);
             filter: drop-shadow(0 0 40px rgba(201, 169, 90, 0.2));
           }
