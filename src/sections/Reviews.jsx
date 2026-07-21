@@ -40,7 +40,7 @@ const Reviews = () => {
     if (isVisible) {
       intervalRef.current = setInterval(() => {
         handleNext();
-      }, 10000);
+      }, 7000);
     }
   };
 
@@ -116,7 +116,7 @@ const Reviews = () => {
       />
 
       {/* Dark overlay with subtle blur */}
-      <div className="absolute inset-0 bg-black/70" />
+      {/* <div className="absolute inset-0 bg-black/70" /> */}
 
       {/* Ambient light streak */}
       <div className="absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c9a95a]/5 to-transparent pointer-events-none hidden lg:block" />
@@ -180,7 +180,7 @@ const Reviews = () => {
                     <p className="text-[#c9a95a] text-xs sm:text-sm md:text-base font-light tracking-wide">
                       {review.client}
                     </p>
-                    <p className="text-white/30 text-[10px] sm:text-xs md:text-sm font-light tracking-wider mt-0.5">
+                    <p className="text-white/80 text-[10px] sm:text-xs md:text-sm font-light tracking-wider mt-0.5">
                       {review.company}
                     </p>
                   </div>

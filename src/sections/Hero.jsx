@@ -14,18 +14,18 @@ const Hero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat block md:hidden"
         style={{
-          backgroundImage: "url('/images/reception-bg-mobile.png')",
+          backgroundImage: "url('/images/reception-bg-mobile2.png')",
         }}
       />
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden md:block"
         style={{
-          backgroundImage: "url('/images/reception-bg2.png')",
+          backgroundImage: "url('/images/reception-bg3.png')",
         }}
       />
 
       {/* Dark overlay - responsive gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/20 md:from-black/60 md:via-black/30 md:to-transparent z-[1]" />
+      {/* <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/20 md:from-black/60 md:via-black/30 md:to-transparent z-[1]" /> */}
 
       {/* Hero Content */}
       <div className="relative z-10 flex items-center h-full px-6 sm:px-10 md:px-16 lg:px-24">

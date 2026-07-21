@@ -40,7 +40,7 @@ const Footer = () => {
                 href="mailto:registry@azimuthconcierge.com"
                 className="text-white/50 hover:text-white text-xs sm:text-sm tracking-[0.15em] font-light transition-colors duration-300"
               >
-                Contact
+                Registry
               </a>
             </div>
 

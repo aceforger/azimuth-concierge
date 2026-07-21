@@ -208,10 +208,12 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full z-50">
       {/* Nav bar */}
       <div
-        className={`flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 md:py-6 lg:py-8 transition-all duration-500 ${
-          openMenu !== null || mobileMenuOpen || scrolled
-            ? "bg-black/80 backdrop-blur-xl border-b border-white/[0.06]"
-            : "bg-transparent"
+        className={`flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 md:py-6 lg:py-4 transition-all duration-500 ${
+          openMenu !== null || mobileMenuOpen
+            ? "bg-black/75 backdrop-blur-xl"
+            : scrolled
+              ? "bg-black/50 backdrop-blur-xl"
+              : "bg-transparent"
         }`}
       >
         {/* Left group: Logo + Desktop Nav */}
