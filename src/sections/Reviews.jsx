@@ -40,7 +40,7 @@ const Reviews = () => {
     if (isVisible) {
       intervalRef.current = setInterval(() => {
         handleNext();
-      }, 7000);
+      }, 10000);
     }
   };
 
@@ -97,29 +97,37 @@ const Reviews = () => {
     <section
       ref={sectionRef}
       id="reviews"
-      className="bg-black min-h-screen flex items-center px-6 sm:px-10 md:px-16 lg:px-12 xl:px-24 py-20 md:py-28 lg:py-24 xl:py-32 relative overflow-hidden"
+      className="bg-black/50 min-h-screen flex items-center px-6 sm:px-10 md:px-16 lg:px-12 xl:px-24 py-20 md:py-28 lg:py-24 xl:py-32 relative overflow-hidden"
     >
-      {/* Background Image - Mobile */}
+      {/* Ambient dot pattern */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat block lg:hidden"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
-          backgroundImage: "url('/images/reception-bg-mobile-us.png')",
+          backgroundImage:
+            "radial-gradient(circle at 70% 50%, #c9a95a 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
         }}
       />
 
-      {/* Background Image - Desktop */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden lg:block"
-        style={{
-          backgroundImage: "url('/images/reception-bg-us.png')",
-        }}
-      />
+      {/* Geometric accent - top left */}
+      <div className="absolute top-0 left-0 w-72 h-72 opacity-[0.02] pointer-events-none">
+        <div className="absolute top-12 left-12 w-48 h-48 border border-[#c9a95a]/25 rounded-full" />
+        <div className="absolute top-24 left-24 w-24 h-24 border border-[#c9a95a]/20 rotate-45" />
+      </div>
 
-      {/* Dark overlay with subtle blur */}
-      {/* <div className="absolute inset-0 bg-black/70" /> */}
+      {/* Geometric accent - bottom right */}
+      <div className="absolute bottom-0 right-0 w-96 h-96 opacity-[0.02] pointer-events-none">
+        <div className="absolute bottom-16 right-16 w-64 h-64 border border-[#c9a95a]/25 rounded-full" />
+        <div className="absolute bottom-28 right-28 w-40 h-40 border border-[#c9a95a]/15 rounded-full" />
+        <div className="absolute bottom-40 right-40 w-16 h-16 border border-[#c9a95a]/30 rotate-45" />
+      </div>
 
-      {/* Ambient light streak */}
-      <div className="absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c9a95a]/5 to-transparent pointer-events-none hidden lg:block" />
+      {/* Vertical light streaks */}
+      <div className="absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c9a95a]/6 to-transparent pointer-events-none hidden lg:block" />
+      <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c9a95a]/4 to-transparent pointer-events-none hidden lg:block" />
+
+      {/* Horizontal accent */}
+      <div className="absolute left-0 right-0 top-1/3 h-px bg-gradient-to-r from-transparent via-[#c9a95a]/4 to-transparent pointer-events-none hidden lg:block" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Section label */}
@@ -128,11 +136,11 @@ const Reviews = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-10" />
-          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light mt-10">
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-5" />
+          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light mt-5">
             The Stories
           </p>
-          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-10" />
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-5" />
         </div>
 
         {/* Quote area */}
@@ -143,47 +151,70 @@ const Reviews = () => {
         >
           {/* Giant watermark quote mark */}
           <span
-            className="absolute -top-8 sm:-top-12 lg:-top-16 -left-4 sm:-left-6 lg:-left-8 xl:-left-12 text-[#c9a95a]/5 text-8xl sm:text-[10rem] lg:text-[12rem] xl:text-[16rem] font-serif-premium leading-none select-none pointer-events-none transition-all duration-[2000ms]"
+            className="absolute -top-8 sm:-top-12 lg:-top-20 -left-4 sm:-left-6 lg:-left-10 xl:-left-14 text-[#c9a95a]/4 text-8xl sm:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-serif-premium leading-none select-none pointer-events-none transition-all duration-[2500ms]"
             style={{
-              opacity: isVisible ? 0.05 : 0,
-              transform: isVisible ? "scale(1)" : "scale(0.8)",
+              opacity: isVisible ? 0.04 : 0,
+              transform: isVisible ? "scale(1)" : "scale(0.75)",
             }}
           >
             &ldquo;
           </span>
 
+          {/* Closing quote mark - bottom right */}
+          <span
+            className="absolute -bottom-16 sm:-bottom-20 lg:-bottom-28 -right-2 sm:-right-4 lg:-right-8 text-[#c9a95a]/4 text-8xl sm:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-serif-premium leading-none select-none pointer-events-none transition-all duration-[2500ms] delay-500"
+            style={{
+              opacity: isVisible ? 0.04 : 0,
+              transform: isVisible ? "scale(1)" : "scale(0.75)",
+            }}
+          >
+            &rdquo;
+          </span>
+
           {/* Quote container */}
-          <div className="relative" style={{ minHeight: "280px" }}>
+          <div className="relative" style={{ minHeight: "300px" }}>
             {reviews.map((review, index) => (
               <div
                 key={index}
-                className={`transition-all duration-[1000ms] ease-out ${
+                className={`transition-all duration-[1200ms] ease-out ${
                   index === current && !isTransitioning
                     ? "opacity-100 translate-y-0 blur-0 relative"
                     : "opacity-0 translate-y-10 blur-sm pointer-events-none absolute inset-0"
                 }`}
               >
+                {/* Decorative gold mark above quote */}
+                <div className="flex items-center gap-2 mb-8 lg:mb-10">
+                  <span className="h-px w-6 lg:w-8 bg-[#c9a95a]/30" />
+                  <span className="w-1.5 h-1.5 rotate-45 border border-[#c9a95a]/40" />
+                </div>
+
                 <blockquote className="relative">
-                  <p className="text-white/80 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light leading-relaxed italic max-w-2xl">
+                  <p className="text-white/80 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-light leading-relaxed italic max-w-2xl">
                     {review.quote}
                   </p>
                 </blockquote>
 
                 {/* Attribution */}
-                <div className="mt-8 sm:mt-10 lg:mt-12 flex items-center gap-3 sm:gap-4">
+                <div className="mt-10 sm:mt-12 lg:mt-14 flex items-center gap-3 sm:gap-4">
                   <div className="flex items-center gap-2">
-                    <span className="h-px w-8 sm:w-10 bg-[#c9a95a]/40" />
-                    <span className="w-1 h-1 rounded-full bg-[#c9a95a]/50" />
+                    <span className="h-px w-10 sm:w-12 bg-[#c9a95a]/40" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c9a95a]/60" />
                   </div>
 
                   <div>
                     <p className="text-[#c9a95a] text-xs sm:text-sm md:text-base font-light tracking-wide">
                       {review.client}
                     </p>
-                    <p className="text-white/80 text-[10px] sm:text-xs md:text-sm font-light tracking-wider mt-0.5">
+                    <p className="text-white/35 text-[10px] sm:text-xs md:text-sm font-light tracking-wider mt-0.5">
                       {review.company}
                     </p>
                   </div>
+                </div>
+
+                {/* Decorative gold mark below attribution */}
+                <div className="flex items-center gap-2 mt-6">
+                  <span className="w-1.5 h-1.5 rotate-45 border border-[#c9a95a]/30" />
+                  <span className="h-px w-16 lg:w-24 bg-gradient-to-r from-[#c9a95a]/30 to-transparent" />
                 </div>
               </div>
             ))}
@@ -192,7 +223,7 @@ const Reviews = () => {
 
         {/* Navigation bar */}
         <div
-          className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-0 mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-white/[0.04] transition-all duration-[1500ms] ease-out delay-500 ${
+          className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-0 mt-14 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-white/[0.05] transition-all duration-[1500ms] ease-out delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -216,8 +247,8 @@ const Reviews = () => {
                 <span
                   className={`block transition-all duration-500 rounded-full ${
                     index === current
-                      ? "w-8 sm:w-10 h-[2px] bg-[#c9a95a] shadow-[0_0_8px_rgba(201,169,90,0.4)]"
-                      : "w-[2px] h-[2px] bg-white/20 group-hover/dot:bg-white/50"
+                      ? "w-8 sm:w-10 h-[2px] bg-[#c9a95a] shadow-[0_0_10px_rgba(201,169,90,0.5)]"
+                      : "w-[2px] h-[2px] bg-white/20 group-hover/dot:bg-white/50 group-hover/dot:shadow-[0_0_4px_rgba(255,255,255,0.2)]"
                   }`}
                 />
                 <span
@@ -238,17 +269,17 @@ const Reviews = () => {
             <div className="flex gap-3 sm:gap-5 items-center">
               <button
                 onClick={handlePrev}
-                className="text-white hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
+                className="text-white/25 hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
               >
                 <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1">
                   ←
                 </span>{" "}
                 Prev
               </button>
-              <span className="text-white/8">|</span>
+              <span className="text-white/10">|</span>
               <button
                 onClick={handleNext}
-                className="text-white hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
+                className="text-white/25 hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
               >
                 Next{" "}
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">

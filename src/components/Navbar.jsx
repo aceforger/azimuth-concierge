@@ -252,7 +252,7 @@ const Navbar = () => {
                   className={`tracking-[0.25em] text-xs xl:text-sm uppercase font-light transition-all duration-300 ${
                     openMenu === item.key
                       ? "text-[#c9a95a]"
-                      : "text-white/80 group-hover:text-white"
+                      : "text-white group-hover:text-white"
                   }`}
                 >
                   {item.label}
