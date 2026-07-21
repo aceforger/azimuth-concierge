@@ -23,9 +23,12 @@ const Privacy = () => {
 
   const scrollToSection = (id) => {
     setActiveSection(id);
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 170; // navbar height buffer
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   };
 
   return (

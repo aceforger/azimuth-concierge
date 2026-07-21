@@ -99,15 +99,24 @@ const Reviews = () => {
       id="reviews"
       className="bg-black min-h-screen flex items-center px-6 sm:px-10 md:px-16 lg:px-12 xl:px-24 py-20 md:py-28 lg:py-24 xl:py-32 relative overflow-hidden"
     >
-      {/* Background texture */}
+      {/* Background Image - Mobile */}
       <div
-        className="absolute inset-0 opacity-[0.015] pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat block lg:hidden"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 70% 50%, #c9a95a 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
+          backgroundImage: "url('/images/reception-bg-mobile-us.png')",
         }}
       />
+
+      {/* Background Image - Desktop */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden lg:block"
+        style={{
+          backgroundImage: "url('/images/reception-bg-us.png')",
+        }}
+      />
+
+      {/* Dark overlay with subtle blur */}
+      <div className="absolute inset-0 bg-black/70" />
 
       {/* Ambient light streak */}
       <div className="absolute right-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c9a95a]/5 to-transparent pointer-events-none hidden lg:block" />
@@ -119,11 +128,11 @@ const Reviews = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50" />
-          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light">
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-10" />
+          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light mt-10">
             The Stories
           </p>
-          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50" />
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-10" />
         </div>
 
         {/* Quote area */}
@@ -229,7 +238,7 @@ const Reviews = () => {
             <div className="flex gap-3 sm:gap-5 items-center">
               <button
                 onClick={handlePrev}
-                className="text-white/20 hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
+                className="text-white hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
               >
                 <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1">
                   ←
@@ -239,7 +248,7 @@ const Reviews = () => {
               <span className="text-white/8">|</span>
               <button
                 onClick={handleNext}
-                className="text-white/20 hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
+                className="text-white hover:text-[#c9a95a]/60 transition-all duration-300 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-light group"
               >
                 Next{" "}
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">

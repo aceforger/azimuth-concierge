@@ -85,15 +85,23 @@ const TheMark = () => {
       id="the-mark"
       className="bg-black min-h-screen flex items-center px-6 sm:px-10 md:px-16 lg:px-12 xl:px-24 py-20 md:py-28 lg:py-24 xl:py-32 relative overflow-hidden"
     >
-      {/* Background ambient texture */}
+      {/* Background Image - Mobile */}
       <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat block lg:hidden"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 30% 50%, #c9a95a 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+          backgroundImage: "url('/images/reception-bg-mobile-sri.png')",
         }}
       />
+
+      {/* Background Image - Desktop */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden lg:block"
+        style={{
+          backgroundImage: "url('/images/reception-bg-sri.png')",
+        }}
+      />
+      {/* Dark overlay with subtle blur */}
+      <div className="absolute inset-0 bg-black/70" />
 
       {/* Subtle vertical light streak */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c9a95a]/5 to-transparent pointer-events-none hidden lg:block" />
@@ -105,11 +113,11 @@ const TheMark = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50" />
-          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light mt-5">
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-10" />
+          <p className="text-[#c9a95a] tracking-[0.4em] text-[10px] md:text-[11px] uppercase font-light mt-10">
             The Mark
           </p>
-          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50" />
+          <span className="h-px w-8 sm:w-10 lg:w-12 bg-[#c9a95a]/50 mt-10" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 xl:gap-32 items-center">
@@ -299,7 +307,7 @@ const TheMark = () => {
 
             {/* Bottom bar */}
             <div className="mt-14 pt-8 border-t border-white/[0.04] flex items-center justify-between">
-              <p className="text-white/20 text-[10px] tracking-[0.35em] font-light uppercase">
+              <p className="text-white text-[20px] tracking-[0.35em] font-light uppercase">
                 {(activeSymbol + 1).toString().padStart(2, "0")} &mdash;{" "}
                 {symbols.length.toString().padStart(2, "0")}
               </p>
@@ -311,7 +319,7 @@ const TheMark = () => {
                       (activeSymbol - 1 + symbols.length) % symbols.length,
                     )
                   }
-                  className="text-white/20 hover:text-[#c9a95a]/70 transition-colors duration-300 text-xs tracking-[0.2em] uppercase font-light"
+                  className="text-white hover:text-[#c9a95a]/70 transition-colors duration-300 text-xs tracking-[0.2em] uppercase font-light"
                 >
                   Prev
                 </button>
@@ -320,7 +328,7 @@ const TheMark = () => {
                   onClick={() =>
                     handleDotClick((activeSymbol + 1) % symbols.length)
                   }
-                  className="text-white/20 hover:text-[#c9a95a]/70 transition-colors duration-300 text-xs tracking-[0.2em] uppercase font-light"
+                  className="text-white hover:text-[#c9a95a]/70 transition-colors duration-300 text-xs tracking-[0.2em] uppercase font-light"
                 >
                   Next
                 </button>

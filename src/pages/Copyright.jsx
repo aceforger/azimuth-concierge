@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Copyright = () => {
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState("ownership");
+  const contentRef = useRef(null);
 
   const sections = [
     { id: "ownership", title: "Intellectual Property Ownership" },
@@ -11,13 +12,35 @@ const Copyright = () => {
     { id: "contact", title: "Contact Information" },
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "-60px 0px -40% 0px" },
+    );
+
+    sections.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToSection = (id) => {
     setActiveSection(id);
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 170; // navbar height buffer
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   };
-
   return (
     <div className="bg-black min-h-screen">
       {/* Hero */}
@@ -32,14 +55,14 @@ const Copyright = () => {
           <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide leading-tight mb-4">
             Copyright Policy
           </h1>
-          <p className="text-white/30 text-xs sm:text-sm font-light tracking-wider">
+          {/* <p className="text-white/30 text-xs sm:text-sm font-light tracking-wider">
             Last modified{" "}
             {new Date().toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",
               year: "numeric",
             })}
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -71,9 +94,10 @@ const Copyright = () => {
             </aside>
 
             {/* Main Content */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 [&>*]:scroll-mt-28">
+              {" "}
               {/* Introduction */}
-              <div className="space-y-5 text-white/55 text-sm md:text-base font-light leading-relaxed mb-12">
+              <div className="space-y-5 text-white/55 text-sm md:text-base font-light leading-relaxed mb-10">
                 <p>
                   Azimuth Concierge Group ("Azimuth," "ACG," "we," or "us")
                   respects the intellectual property rights of others and
@@ -90,7 +114,6 @@ const Copyright = () => {
                   international copyright laws.
                 </p>
               </div>
-
               {/* Sections */}
               <div className="space-y-12">
                 {/* Ownership */}
